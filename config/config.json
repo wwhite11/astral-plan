@@ -1,0 +1,17 @@
+{
+  "development": {
+    "database": "astral_plan_development",
+    "dialect": "postgres"
+  },
+  "test": {
+    "database": "astral_plan_test",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": true
+    }
+  }
+}
