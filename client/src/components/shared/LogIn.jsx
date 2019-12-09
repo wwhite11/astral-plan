@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { logInUser } from '../../services/auth'
 
 class LogIn extends Component {
     constructor () {
