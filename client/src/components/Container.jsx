@@ -1,4 +1,5 @@
 import React from 'react'
+import SignUp from '../screens/SignUp'
 import Routes from '../routes'
 
 class Container extends React.Component {
@@ -13,6 +14,7 @@ class Container extends React.Component {
         return (
             <div>
                 <h1>Hello World</h1>
+                <SignUp />
                 <Routes 
                 user={user}
                 setUser={this.setUser} 
