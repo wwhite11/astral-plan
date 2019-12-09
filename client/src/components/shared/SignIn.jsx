@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { signInUser } from '../../services/auth';
+
+import { signInUser } from '../../services/auth'
 
 class SignIn extends Component {
     constructor () {
@@ -49,7 +50,7 @@ class SignIn extends Component {
                 </button>
             )
         } else {
-            return <button type="submit">Log In</button>
+            return <button type="submit">Sign In</button>
         }
     }
 
@@ -59,7 +60,7 @@ class SignIn extends Component {
         return (
             <div className="row">
                 <div className="form-container">
-                    <h3>Log In</h3>
+                    <h3>Sign In</h3>
                     <form onSubmit={this.onSignIn}>
                         <label>Username</label>
                         <input

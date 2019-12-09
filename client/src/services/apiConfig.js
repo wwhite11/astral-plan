@@ -16,11 +16,10 @@ if (window.location.hostname === 'localhost') {
 }
 
 const api = Axios.create({
-	baseURL: apiUrl,
-	headers: {
-		Authorization: `Bearer ${JwtToken}`,
-		'Access-Control-Allow-Origin': '*'
-	}
+  baseURL: apiUrl,
+  headers: {
+    'Access-Control-Allow-Origin': '*'
+  }
 })
 
 export default api
