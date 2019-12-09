@@ -34,7 +34,7 @@ const signup = async (req, res) => {
 	}
 }
 
-const signIn = async (req, res) => {
+const signin = async (req, res) => {
 	try {
 		console.log(req.body);
 		const { username, password } = req.body;
@@ -124,7 +124,7 @@ const getStar = async (req, res) => {
 
 module.exports = {
     signup,
-    signIn,
+    signin,
     getUser,
     getStar,
     getAllStars

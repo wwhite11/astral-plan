@@ -1,5 +1,4 @@
 import React from 'react'
-import SignUp from '../screens/SignUp'
 import Routes from '../routes'
 
 class Container extends React.Component {
@@ -9,12 +8,17 @@ class Container extends React.Component {
             user: null
         }
     }
+    
+    componentDidMount() {
+      }
+
+    setUser = user => this.setState({ user });
+
     render() {
         const { user } = this.state
         return (
             <div>
                 <h1>Hello World</h1>
-                <SignUp />
                 <Routes 
                 user={user}
                 setUser={this.setUser} 

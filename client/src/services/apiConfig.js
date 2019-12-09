@@ -1,11 +1,11 @@
-import Axios from 'axios'
+import Axios from 'axios';
 
-const JwtToken = localStorage.getItem('token') || null
+const JwtToken = localStorage.getItem('token') || null;
 
 let apiUrl
 
 const apiUrls = {
-  production: 'https://sei-items-api.herokuapp.com/api',
+  production: 'https://astral-plan.herokuapp.com/api',
   development: 'http://localhost:3000/api'
 }
 
