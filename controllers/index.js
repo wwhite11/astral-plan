@@ -1,4 +1,5 @@
 const { User, Star, Planet, Moon } = require('../models');
+const sequelize = require('sequelize');
 
 
 const getUser = async (req, res) => {
@@ -24,6 +25,8 @@ const getUser = async (req, res) => {
 const getAllStars = async (req, res) => {
     try {
         const stars = await Star.findAll({
+            order: [ sequelize.fn( 'RANDOM' ) ],
+            limit: 2, // increase once db seed is larger
             include: [
                 {
                     model: Planet
