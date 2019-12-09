@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import { signInUser } from '../../services/auth'
 
 class SignIn extends Component {
@@ -28,7 +29,7 @@ class SignIn extends Component {
 
         signInUser(this.state)
         .then(res => setUser(res.user))
-        .then(() => history.push('/'))
+        // .then(() => history.push('/'))
         .catch(error => {
             console.error(error)
             this.setState({
@@ -67,7 +68,16 @@ class SignIn extends Component {
                         type="text"
                         name="username"
                         value={username}
-                        placeholder="Enter Username"
+                        placeholder="Username"
+                        onChange={this.handleChange}
+                        />
+                        <label>Password</label>
+                        <input
+                        required
+                        type="text"
+                        name="password"
+                        value={password}
+                        placeholder="Password"
                         onChange={this.handleChange}
                         />
                         {this.renderError()}

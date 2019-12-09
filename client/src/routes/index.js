@@ -18,7 +18,7 @@ const Routes = ({ user, setUser }) => (
         />
         <Route
         path="/signin"
-        render={props => <SignIn {...props} setUser={setUser}/>}
+        render={props => <SignIn {...props} setUser={setUser} />}
         />
     </Switch>
 )

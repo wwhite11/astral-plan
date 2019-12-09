@@ -1,4 +1,6 @@
-import Axios from 'axios'
+import Axios from 'axios';
+
+const JwtToken = localStorage.getItem('token') || null;
 
 let apiUrl
 
