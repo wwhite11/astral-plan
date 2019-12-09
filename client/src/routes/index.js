@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import Home from '../screens/Home'
 import Dashboard from '../screens/Dashboard'
 import SignUp from '../screens/SignUp'
-import LogIn from '../components/shared/LogIn'
+import SignIn from '../components/shared/SignIn'
 
 const Routes = ({ user, setUser }) => (
     <Switch>
@@ -17,8 +17,8 @@ const Routes = ({ user, setUser }) => (
         render={props => <SignUp {...props} setUser={setUser} />}
         />
         <Route
-        path="/login"
-        render={props => <LogIn {...props} setUser={setUser}/>}
+        path="/signin"
+        render={props => <SignIn {...props} setUser={setUser}/>}
         />
     </Switch>
 )

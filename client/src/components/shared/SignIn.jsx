@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { logInUser } from '../../services/auth'
+import { signInUser } from '../../services/auth'
 
-class LogIn extends Component {
+class SignIn extends Component {
     constructor () {
         super()
 
@@ -21,12 +21,12 @@ class LogIn extends Component {
         })
     }
 
-    onLogIn = event => {
+    onSignIn = event => {
         event.preventDefault()
 
         const { history, setUser } = this.props
 
-        logInUser(this.state)
+        signInUser(this.state)
         .then(res => setUser(res.user))
         .then(() => history.push('/'))
         .catch(error => {
@@ -49,7 +49,7 @@ class LogIn extends Component {
                 </button>
             )
         } else {
-            return <button type="submit">Log In</button>
+            return <button type="submit">Sign In</button>
         }
     }
 
@@ -59,7 +59,7 @@ class LogIn extends Component {
         return (
             <div className="row">
                 <div className="form-container">
-                    <h3>Log In</h3>
+                    <h3>Sign In</h3>
                     <form onSubmit={this.onSignIn}>
                         <label>Username</label>
                         <input
@@ -78,4 +78,4 @@ class LogIn extends Component {
     }
 }
 
-export default LogIn
+export default SignIn
