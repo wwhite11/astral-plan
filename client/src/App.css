@@ -1,10 +1,18 @@
 body {
   color: white;
-  background-color: #151965;
-  font-family: Futura;
+  background-color: #0A0B2B;
+  font-family: 'Roboto', sans-serif;
 }
 h1 {
-  letter-spacing: 10px;
+  letter-spacing: 20px;
+}
+.system {
+  border: 3px solid #395188;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  margin: 40px;
 }
 .star {
   width: 100px;
@@ -21,14 +29,46 @@ h1 {
   height: 10px;
   border-radius: 50%;
 }
+.star-planets {
+  display: flex;
+  justify-content: space-around;
+}
+.planets {
+  display: flex;
+  width: 300px;
+  justify-content: space-around;
+  align-items: center;
+}
+.star-planets-moons {
+  display: flex;
+  justify-content: space-around;
+}
 nav {
   display: flex;
   justify-content: space-around;
-  background-color: #393EA2;
-  height: 40px;
+  background-color: #395188;
+  height: 60px;
   align-items: center;
 }
 .navbar {
   color: white;
   text-decoration: none;
+  letter-spacing: 3px;
+}
+.home-header {
+  position: absolute;
+  top: 50vh;
+  left: 50vh;
+}
+.home-star {
+  height: 200px;
+  width: 200px;
+  background-color: #BA630B;
+  border-radius: 50%;
+  display: flex;
+  margin: 200px;
+}
+.sub-header {
+  color: #E3DE63;
+  letter-spacing: 4px;
 }

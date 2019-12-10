@@ -26,26 +26,28 @@ class Systems extends React.Component {
     render() {
         const systems = this.state.stars.map(star => {
             return (
-                <div key={star.id}>
-                    <h3>Star Name: {star.name}</h3>
+                <div className='system' key={star.id}>
+                    <div className='star-planets'>
                     <div className="star" style={{backgroundColor: star.color}}></div>
-                    <h4>Planets: {star.Planets.length}</h4>
-                    <ul>
+                    <div className='planets'>
                         {star.Planets.map(planet => {
                             return (
                                 <div key={planet.id}>
-                                    <h5>Planet Name: {planet.name}</h5>
                                     <div className="planet" style={{backgroundColor: planet.baseColor}}></div>
                                 </div>
                             )
                         })}
-                    </ul>
+                    </div>
+                    </div>
+                    <div className='star-planets-moons'>
+                        <h3>Star Name: {star.name}</h3>
+                        <h4>Planets: {star.Planets.length}</h4>
+                    </div>
                 </div>
             )
         })
         return (
             <div>
-                <h1>ASTRAL PLAN</h1>
                 <ul>
                     {systems}
                 </ul>
