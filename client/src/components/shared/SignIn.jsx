@@ -58,9 +58,7 @@ class SignIn extends Component {
 
     render() {
         const { username, password } = this.state
-        console.log(this.props)
-        const editUserButton = this.props.user ? (<Link to={`/users/${this.props.user.id}/update`}>Edit Your Info</Link>) : ('Halp!')
-        console.log(editUserButton)
+        const editUserButton = this.props.user ? (<Link to={`/users/${this.props.user.id}/update`}>Edit Your Info</Link>) : null
 
         return (
             <div className="row">

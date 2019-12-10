@@ -8,7 +8,6 @@ const TOKEN_KEY = '0fbfec5e1c6701506ab3f8a3162990ba';
 
 const signup = async (req, res) => {
 	try {
-		console.log(req.body)
 		const { username, firstName, lastName, email, password } = req.body
 		const password_digest = await bcrypt.hash(password, SALT_ROUNDS)
 		const user = await User.create({
@@ -36,7 +35,6 @@ const signup = async (req, res) => {
 
 const signin = async (req, res) => {
 	try {
-		console.log(req.body);
 		const { username, password } = req.body;
 		const user = await User.findOne({
 			where: {
@@ -86,14 +84,12 @@ const updateUser = async (req, res) => {
         const editId = req.params.user_id; // from routes
         const { password } = req.body
         const { username, firstName, lastName, email } = req.body
-        console.log(id, Number(editId));
         if (id === Number(editId)) {
             const user = await User.findByPk(id);
             if (await bcrypt.compare(password, user.dataValues.password_digest)) {
                 console.log('Match!');
                 await user.update({ username, firstName, lastName, email })
             }
-            console.log('Match 2!');
     	} else {
             console.log('No match!');
         }
@@ -106,7 +102,6 @@ const updateUser = async (req, res) => {
 
 const getAllStars = async (req, res) => {
     try {
-        console.log(req.headers);
         const stars = await Star.findAll({
             order: [ sequelize.fn( 'RANDOM' ) ],
             limit: 2, // increase once db seed is larger
