@@ -27,7 +27,6 @@ class SignIn extends Component {
         event.preventDefault()
 
         const { history, setUser } = this.props
-        console.log(history, setUser);
 
         signInUser(this.state)
         .then(res => setUser(res.user))
