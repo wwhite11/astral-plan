@@ -1,5 +1,6 @@
 module.exports = (req, res, next) => {
-	const { TOKEN_KEY } = require('../controllers/index.js')
+    const { TOKEN_KEY } = require('../controllers/index.js')
+    console.log('token key from restrict:', TOKEN_KEY);
 	const jwt = require('jsonwebtoken')
 	try {
 		const token = req.headers.authorization.split(' ')[1]

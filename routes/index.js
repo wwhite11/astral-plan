@@ -11,4 +11,6 @@ router.get('/stars/:star_id', controllers.getStar);
 router.post('/signup', controllers.signup);
 router.post('/signin', controllers.signin);
 
+router.put('/users/:user_id', restrict, controllers.updateUser);
+
 module.exports = router;

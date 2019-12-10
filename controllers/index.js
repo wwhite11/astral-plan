@@ -80,6 +80,23 @@ const getUser = async (req, res) => {
     }
 }
 
+const updateUser = async (req, res) => {
+    try {
+        const { id } = res.locals.user; // from restrict
+        const editId = req.params.user_id; // from routes
+        console.log(id, editId);
+        if (id === editId) {
+            console.log('Match!');
+    	} else {
+            console.log('No match!');
+        }
+        res.status(200).send('Nailed it!')
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 const getAllStars = async (req, res) => {
     try {
         console.log(req.headers);
@@ -140,6 +157,7 @@ module.exports = {
     TOKEN_KEY,
     signup,
     signin,
+    updateUser,
     getUser,
     getStar,
     getAllStars

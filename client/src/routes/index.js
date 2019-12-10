@@ -6,11 +6,13 @@ import SignUp from '../screens/SignUp'
 import SignIn from '../components/shared/SignIn'
 import CreateSystem from '../screens/CreateSystem'
 import UpdateSystem from '../screens/UpdateSystem'
+import UpdateUser from '../screens/UpdateUser'
 import Stars from '../screens/Stars'
 import Star from '../screens/Star'
 import SignOut from '../components/shared/SignOut'
+import AuthenticatedRoute from './AuthenticatedRoute'
 
-const Routes = ({ user, setUser, clearUser, createSystem, updateSystem }) => (
+const Routes = ({ user, setUser, clearUser, createSystem, updateSystem, updateUser }) => (
     <Switch>
         <Route
         exact
@@ -23,7 +25,7 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem }) => (
         />
         <Route
         path="/sign-in"
-        render={props => <SignIn {...props} setUser={setUser} />}
+        render={props => <SignIn {...props} setUser={setUser}  user={user} />}
         />
         <Route
         exact
@@ -47,6 +49,12 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem }) => (
         <Route 
         path="/update-system/:id"
         render={props => <UpdateSystem {...props} updateSystem={updateSystem} />}
+        />
+        <AuthenticatedRoute
+        exact
+        user={user}
+        path="/users/:user_id/update"
+        render={props => <UpdateUser {...props} user={user} />}
         />
     </Switch>
 )

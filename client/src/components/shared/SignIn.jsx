@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import { signInUser } from '../../services/auth'
 
 class SignIn extends Component {
-    constructor () {
-        super()
+    constructor (props) {
+        super(props)
 
         this.state = {
             username: '',
@@ -26,10 +27,11 @@ class SignIn extends Component {
         event.preventDefault()
 
         const { history, setUser } = this.props
+        console.log(history, setUser);
 
         signInUser(this.state)
         .then(res => setUser(res.user))
-        // .then(() => history.push('/'))
+//        .then(() => history.push(`/`))
         .catch(error => {
             console.error(error)
             this.setState({
@@ -56,6 +58,9 @@ class SignIn extends Component {
 
     render() {
         const { username, password } = this.state
+        console.log(this.props)
+        const editUserButton = this.props.user ? (<Link to={`/users/${this.props.user.id}/update`}>Edit Your Info</Link>) : ('Halp!')
+        console.log(editUserButton)
 
         return (
             <div className="row">
@@ -81,7 +86,9 @@ class SignIn extends Component {
                         onChange={this.handleChange}
                         />
                         {this.renderError()}
+                        {editUserButton}
                     </form>
+
                 </div>
             </div>
         )
