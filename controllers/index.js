@@ -123,6 +123,7 @@ const getStar = async (req, res) => {
 }
 
 module.exports = {
+    TOKEN_KEY,
     signup,
     signin,
     getUser,
