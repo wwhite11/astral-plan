@@ -12,7 +12,6 @@ export const getStars = async () => {
   export const getStarById = async id => {
     try {
       const resp = await api.get(`/stars/${id}`)
-      console.log(resp.data.star)
       return resp.data.star
     } catch (error) {
       throw error
