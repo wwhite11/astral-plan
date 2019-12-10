@@ -1,5 +1,6 @@
 import React from 'react'
 import Routes from '../routes'
+import Nav from '../components/shared/Nav'
 
 class Container extends React.Component {
     constructor() {
@@ -18,7 +19,7 @@ class Container extends React.Component {
         const { user } = this.state
         return (
             <div>
-                <h1>Hello World</h1>
+                <Nav />
                 <Routes 
                 user={user}
                 setUser={this.setUser} 
