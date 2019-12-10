@@ -84,9 +84,16 @@ const updateUser = async (req, res) => {
     try {
         const { id } = res.locals.user; // from restrict
         const editId = req.params.user_id; // from routes
-        console.log(id, editId);
-        if (id === editId) {
-            console.log('Match!');
+        const { password } = req.body
+        const { username, firstName, lastName, email } = req.body
+        console.log(id, Number(editId));
+        if (id === Number(editId)) {
+            const user = await User.findByPk(id);
+            if (await bcrypt.compare(password, user.dataValues.password_digest)) {
+                console.log('Match!');
+                await user.update({ username, firstName, lastName, email })
+            }
+            console.log('Match 2!');
     	} else {
             console.log('No match!');
         }

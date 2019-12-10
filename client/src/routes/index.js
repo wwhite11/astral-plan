@@ -54,7 +54,7 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem, updateUs
         exact
         user={user}
         path="/users/:user_id/update"
-        render={props => <UpdateUser {...props} user={user} />}
+        render={props => <UpdateUser {...props} setUser={setUser} user={user} />}
         />
     </Switch>
 )
