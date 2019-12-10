@@ -21,3 +21,14 @@ h1 {
   height: 10px;
   border-radius: 50%;
 }
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #393EA2;
+  height: 40px;
+  align-items: center;
+}
+.navbar {
+  color: white;
+  text-decoration: none;
+}

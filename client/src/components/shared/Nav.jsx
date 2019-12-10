@@ -1,11 +1,12 @@
-// import React from 'react'
-// import { NavLink } from 'react-router-dom'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
-// const Nav = () => (
-// 	<nav>
-// 		<NavLink to='/stars'>Stars</NavLink>
-// 		<NavLink to='/create'>Create Stars</NavLink>
-// 	</nav>
-// )
+const Nav = () => (
+	<nav>
+		<NavLink className='navbar' to='/'>HOME</NavLink>
+		<NavLink className='navbar' to='/sign-in'>SIGN IN</NavLink>
+        <NavLink className='navbar' to='/sign-up'>SIGN UP</NavLink>
+	</nav>
+)
 
-// export default Nav
+export default Nav
