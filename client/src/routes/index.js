@@ -4,8 +4,9 @@ import Home from '../screens/Home'
 import Dashboard from '../screens/Dashboard'
 import SignUp from '../screens/SignUp'
 import SignIn from '../components/shared/SignIn'
+import CreateSystem from '../screens/CreateSystem'
 
-const Routes = ({ user, setUser }) => (
+const Routes = ({ user, setUser, createSystem }) => (
     <Switch>
         <Route
         exact
@@ -19,6 +20,10 @@ const Routes = ({ user, setUser }) => (
         <Route
         path="/signin"
         render={props => <SignIn {...props} setUser={setUser} />}
+        />
+        <Route 
+        path="/create-system"
+        render={props => <CreateSystem {...props} createSystem={createSystem} />}
         />
     </Switch>
 )
