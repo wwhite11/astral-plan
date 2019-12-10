@@ -29,6 +29,24 @@ export const signOut = async user => {
   }
 }
 
+export const getUserForUpdate = async user => {
+  try {
+    const resp = await api.get(`/users/${user}`);
+    return resp.data;
+  } catch (error) {
+    throw error
+  }
+}
+
+export const updateUser = async (id, credentials) => {
+  try {
+    const resp = await api.put(`/users/${id}`, credentials);
+    return resp.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export const changePassword = async (passwords) => {
   try {
     const resp = await api.post('/change-password', passwords);

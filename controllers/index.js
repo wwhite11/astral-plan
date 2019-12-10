@@ -8,7 +8,6 @@ const TOKEN_KEY = '0fbfec5e1c6701506ab3f8a3162990ba';
 
 const signup = async (req, res) => {
 	try {
-		console.log(req.body)
 		const { username, firstName, lastName, email, password } = req.body
 		const password_digest = await bcrypt.hash(password, SALT_ROUNDS)
 		const user = await User.create({
@@ -36,7 +35,6 @@ const signup = async (req, res) => {
 
 const signin = async (req, res) => {
 	try {
-		console.log(req.body);
 		const { username, password } = req.body;
 		const user = await User.findOne({
 			where: {
@@ -80,6 +78,28 @@ const getUser = async (req, res) => {
     }
 }
 
+const updateUser = async (req, res) => {
+    try {
+        const { id } = res.locals.user; // from restrict
+        const editId = req.params.user_id; // from routes
+        const { password } = req.body
+        const { username, firstName, lastName, email } = req.body
+        if (id === Number(editId)) {
+            const user = await User.findByPk(id);
+            if (await bcrypt.compare(password, user.dataValues.password_digest)) {
+                console.log('Match!');
+                await user.update({ username, firstName, lastName, email })
+            }
+    	} else {
+            console.log('No match!');
+        }
+        res.status(200).send('Nailed it!')
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 const getAllStars = async (req, res) => {
     try {
         const stars = await Star.findAll({
@@ -87,7 +107,16 @@ const getAllStars = async (req, res) => {
             limit: 2, // increase once db seed is larger
             include: [
                 {
-                    model: Planet
+                    model: User,
+                    attributes: [ 'username', 'firstName', 'lastName' ]
+                },
+                {
+                    model: Planet,
+                    include: [
+                        {
+                            model: Moon
+                        }
+                    ]
                 }
             ]
         });
@@ -103,6 +132,10 @@ const getStar = async (req, res) => {
         const star = await Star.findOne({
             where: {id: star_id},
             include: [
+                {
+                    model: User,
+                    attributes: [ 'username', 'firstName', 'lastName' ]
+                },
                 {
                     model: Planet,
                     include: [
@@ -123,8 +156,10 @@ const getStar = async (req, res) => {
 }
 
 module.exports = {
+    TOKEN_KEY,
     signup,
     signin,
+    updateUser,
     getUser,
     getStar,
     getAllStars
