@@ -16,3 +16,8 @@ h1 {
   height: 25px;
   border-radius: 50%;
 }
+.moon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}

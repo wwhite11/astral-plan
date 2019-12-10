@@ -31,10 +31,12 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem }) => (
         render={props => <SignOut {...props} clearUser={clearUser} user={user} />}
         />
         <Route 
+        exact
         path="/stars"
         render={props => <Stars {...props} />}
         />
         <Route 
+        exact
         path="/stars/:id"
         render={props => <Star {...props} />}
         />
