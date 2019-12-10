@@ -16,3 +16,13 @@ h1 {
   height: 25px;
   border-radius: 50%;
 }
+
+.modal {
+  position:fixed;
+  background: grey;
+  width: 80%;
+  height: auto;
+  top:70%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}

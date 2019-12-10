@@ -26,7 +26,17 @@ class CreateSystem extends React.Component {
     
             <PromptModal show={this.state.isOpen}
               onClose={this.toggleModal}>
-              `Here's some content for the modal`
+               <form onSubmit={this.submitFormHandler}>
+          <div> What is the name of your Star?
+            <input type="text" name="name" ref="name" />
+          </div>
+          <div> What is the Size of your Star?
+            <input type="text" name="name" ref="name" />
+          </div>
+          <div> What is the color of your Star?
+            <input type="text" name="name" ref="name" />
+          </div>
+        </form>
             </PromptModal>
           </div>
     );
