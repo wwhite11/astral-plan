@@ -87,6 +87,10 @@ const getAllStars = async (req, res) => {
             limit: 2, // increase once db seed is larger
             include: [
                 {
+                    model: User,
+                    attributes: [ 'username', 'firstName', 'lastName' ]
+                },
+                {
                     model: Planet
                 }
             ]
