@@ -82,6 +82,7 @@ const getUser = async (req, res) => {
 
 const getAllStars = async (req, res) => {
     try {
+        console.log(req.headers);
         const stars = await Star.findAll({
             order: [ sequelize.fn( 'RANDOM' ) ],
             limit: 2, // increase once db seed is larger
@@ -91,7 +92,12 @@ const getAllStars = async (req, res) => {
                     attributes: [ 'username', 'firstName', 'lastName' ]
                 },
                 {
-                    model: Planet
+                    model: Planet,
+                    include: [
+                        {
+                            model: Moon
+                        }
+                    ]
                 }
             ]
         });
@@ -107,6 +113,10 @@ const getStar = async (req, res) => {
         const star = await Star.findOne({
             where: {id: star_id},
             include: [
+                {
+                    model: User,
+                    attributes: [ 'username', 'firstName', 'lastName' ]
+                },
                 {
                     model: Planet,
                     include: [
