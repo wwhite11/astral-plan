@@ -4,7 +4,7 @@ const PromptModal = (props) => {
   const { name, size, color } = props.formData
   const { onChange, onSubmit } = props
   return (
-    <div className='star-form'>
+    <form className='star-form' onSubmit={onSubmit}>
                 <div> What is the name of your Star?
                   <input type="text" name="name" value={name} onChange={(e) => onChange(e)}/>
                 </div>
@@ -21,9 +21,9 @@ const PromptModal = (props) => {
                   </select>
                 </div>
                 <div>
-                  <input type='submit' value='submit' onSubmit={onSubmit}/>
+                  <input type='submit' value='submit' />
                 </div>
-              </div>
+              </form>
   )
 }
 

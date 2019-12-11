@@ -15,8 +15,8 @@ router.post('/signin', controllers.signin);
 router.put('/users/:user_id', restrict, controllers.updateUser);
 
 // Creation endpoints -- will add 'restrict' when front end is set
-router.post('/users/:user_id/stars', controllers.createStar);
-router.post('/users/:user_id/:star_id/planets', controllers.createPlanet);
+router.post('/users/:user_id/stars', restrict, controllers.createStar);
+router.post('/users/:user_id/:star_id/planets', restrict, controllers.createPlanet);
 router.post('/users/:user_id/:planet_id/moons', controllers.createMoon);
 
 module.exports = router;
