@@ -148,7 +148,8 @@ const getStar = async (req, res) => {
                         }
                     ]
                 }
-            ]
+            ],
+            order: [ sequelize.col('Planets.distance'), sequelize.col('Planets.Moons.distance') ]
         });
         if (star) {
             return res.status(200).json({ star });
