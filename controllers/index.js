@@ -165,14 +165,19 @@ const getStar = async (req, res) => {
 const createStar = async (req, res) => {
 	try {
         const { name, size, color } = req.body
-        const userId = req.params.user_id
-		const star = await Star.create({
-			name,
-            size,
-            color,
-            userId
-		})
-		return res.status(201).json({ star })
+        const { id } = res.locals.user; // from restrict
+        const userId = req.params.user_id // from routes
+        if (id === Number(userId)) {
+            const star = await Star.create({
+                name,
+                size,
+                color,
+                userId
+            }) 
+    		return res.status(201).json({ star })
+        } else {
+            console.log('No user match!');
+        }
 	} catch (error) {
 		console.log(
 			'You made it to the createStar controller, but there was an error :('
@@ -184,19 +189,25 @@ const createStar = async (req, res) => {
 const createPlanet = async (req, res) => {
 	try {
         const { name, size, composition, baseColor, surface, rings, distance, year  } = req.body
+        const { id } = res.locals.user; // from restrict
+        const userId = req.params.user_id // from routes
         const starId = req.params.star_id
-		const planet = await Planet.create({
-			name,
-            size,
-            composition,
-            baseColor,
-            surface,
-            rings,
-            distance,
-            year,
-            starId
-		})
-		return res.status(201).json({ planet })
+        if (id === Number(userId)) {
+            const planet = await Planet.create({
+                name,
+                size,
+                composition,
+                baseColor,
+                surface,
+                rings,
+                distance,
+                year,
+                starId
+            })
+            return res.status(201).json({ planet })
+        } else {
+            console.log('No user match!')
+        }
 	} catch (error) {
 		console.log(
 			'You made it to the createPlanet controller, but there was an error :('

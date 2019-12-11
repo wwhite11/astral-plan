@@ -18,9 +18,9 @@ export const getStars = async () => {
     }
   }
 
-  export const createStar = async star => {
+  export const createStar = async (user, star) => {
     try {
-      const resp = await api.post('/stars', star)
+      const resp = await api.post(`/users/${user}/stars`, star)
       return resp
     } catch (error) {
       throw error

@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
 		const token = req.headers.authorization.split(' ')[1]
 		const data = jwt.verify(token, TOKEN_KEY)
 		res.locals.user = data // Used for assigning an item to a user, we won't be using this for this excercise
-		console.log(res.locals.user)
+		console.log('res.locals.user:', res.locals.user)
 		next()
 	} catch (error) {
 		console.log(error)

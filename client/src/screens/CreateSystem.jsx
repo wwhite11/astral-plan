@@ -10,7 +10,7 @@ class CreateSystem extends React.Component {
         this.state = {
             name: '',
             size: 150,
-            color: '',
+            color: 'white',
             createdStar: null
         }
     }
@@ -21,10 +21,10 @@ class CreateSystem extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    createStar(this.state)
+    createStar(this.props.user.id, this.state)
       .then(res =>
         res.status === 201
-          ? this.setState({ createdStar: res.data.item })
+          ? this.setState({ createdStar: res.data.star })
           : null
       )
       .catch(console.error)
@@ -36,7 +36,8 @@ class CreateSystem extends React.Component {
           <div>
               <PromptModal 
               formData={{name, size, color}}
-              onChange={this.handleChange} 
+              onChange={this.handleChange}
+              onSubmit={this.handleSubmit} 
               />
               <div>
                   <div className='star-render' 
