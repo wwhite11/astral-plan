@@ -16,11 +16,21 @@ class Systems extends React.Component {
     fetchStars = async () => {
         try {
         const stars = await getStars()
+        this.moonCounter(stars)
         this.setState({ stars })
         } catch (err) {
         console.error(err)
         }
         console.log(this.state.stars)
+    }
+
+    moonCounter = (starData) => {
+        // adds moonCount attribute to each star object for total number of moons in system
+        starData.forEach(star => {
+          let moonCount = 0;
+          star.Planets.forEach(planet => moonCount += planet.Moons.length);
+          star.moonCount = moonCount;
+        });
     }
 
     render() {
