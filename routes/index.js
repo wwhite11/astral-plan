@@ -20,6 +20,6 @@ router.post('/users/:user_id/:star_id/planets', restrict, controllers.createPlan
 router.post('/users/:user_id/:planet_id/moons', controllers.createMoon);
 
 // Update endpoints -- will add 'restict' when front end is set
-router.put('/users/:user_id/stars/:star_id', controllers.updateStar);
+router.put('/users/:user_id/stars/:star_id', restrict, controllers.updateStar);
 
 module.exports = router;

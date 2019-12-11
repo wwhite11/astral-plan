@@ -1,5 +1,6 @@
 import React from 'react'
 import { getStars } from '../../services'
+import { Link } from 'react-router-dom'
 
 class Systems extends React.Component {
     constructor(props) {
@@ -25,6 +26,8 @@ class Systems extends React.Component {
 
     render() {
         const systems = this.state.stars.map(star => {
+            console.log(this.props.user.username, star.username)
+            const edit = this.props.user.id === star.userId ? (<Link to={`/update-system/${star.id}`}>Update this star</Link>) : null;
             return (
                 <div className='system' key={star.id}>
                     <div className='star-planets'>
@@ -42,6 +45,7 @@ class Systems extends React.Component {
                     <div className='star-planets-moons'>
                         <h3>Star Name: {star.name}</h3>
                         <h4>Planets: {star.Planets.length}</h4>
+                        { edit }
                     </div>
                 </div>
             )
