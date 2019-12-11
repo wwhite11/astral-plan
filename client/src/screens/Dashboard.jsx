@@ -1,8 +1,13 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Dashboard = () => {
     return (
-        <div>Dashboard</div>
+        <div>
+            <h1>ASTRAL PLAN</h1>
+            <h3>Your Systems</h3>
+            <NavLink to='/create-system'><button>+ CREATE STAR</button></NavLink>
+        </div>
     )
 }
 
