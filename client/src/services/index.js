@@ -17,3 +17,12 @@ export const getStars = async () => {
       throw error
     }
   }
+
+  export const createStar = async star => {
+    try {
+      const resp = await api.post('/stars', star)
+      return resp
+    } catch (error) {
+      throw error
+    }
+  }
