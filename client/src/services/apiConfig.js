@@ -1,6 +1,7 @@
 import Axios from 'axios';
 
-const JwtToken = localStorage.getItem('token') || null;
+export const JwtToken = localStorage.getItem('token') || null;
+export const TOKEN_KEY = '0fbfec5e1c6701506ab3f8a3162990ba';
 
 let apiUrl
 

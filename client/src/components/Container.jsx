@@ -1,6 +1,7 @@
 import React from 'react'
 import Routes from '../routes'
 import Nav from '../components/shared/Nav'
+import { TOKEN_KEY } from '../services/apiConfig.js'
 
 class Container extends React.Component {
     constructor() {
@@ -11,7 +12,17 @@ class Container extends React.Component {
     }
     
     componentDidMount() {
+        this.checkToken();
       }
+
+    checkToken() {
+        const jwt = require('jsonwebtoken');
+        const JwtToken = localStorage.getItem('token') || null;
+        const data = jwt.verify(JwtToken, TOKEN_KEY);
+        this.setState(state => ({
+            user: data
+        }))
+    }
 
     setUser = user => this.setState({ user });
 
