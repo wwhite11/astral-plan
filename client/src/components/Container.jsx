@@ -18,7 +18,7 @@ class Container extends React.Component {
     checkToken() {
         const jwt = require('jsonwebtoken');
         const JwtToken = localStorage.getItem('token') || null;
-        const data = jwt.verify(JwtToken, TOKEN_KEY);
+        const data = JwtToken ? jwt.verify(JwtToken, TOKEN_KEY) : null;
         this.setState(state => ({
             user: data
         }))
