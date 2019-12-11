@@ -26,3 +26,12 @@ export const getStars = async () => {
       throw error
     }
   }
+
+  export const updateStar = async (userId, starId, data) => {
+    try {
+      const resp = await api.put(`/users/${userId}/stars/${starId}`, data);
+      return resp.data
+    } catch (error) {
+      throw error
+    }
+  }

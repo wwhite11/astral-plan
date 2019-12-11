@@ -237,6 +237,27 @@ const createMoon = async (req, res) => {
 	}
 }
 
+// update celestial objects
+const updateStar = async (req, res) => {
+    try {
+        // const { id } = res.locals.user; // from restrict
+        const { name, size, color } = req.body
+        const userId = req.params.user_id; // from routes
+        const id = req.params.star_id // from routes
+//        if (id === Number(userId)) {
+            const star = await Star.findByPk(id);
+            await star.update({ name, size, color })
+        //     }
+    	// } else {
+        //     console.log('No match!');
+        // }
+        res.status(200).json({ star });
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 // export
 
 module.exports = {
@@ -249,5 +270,6 @@ module.exports = {
     getAllStars,
     createStar,
     createPlanet,
-    createMoon
+    createMoon,
+    updateStar
 }

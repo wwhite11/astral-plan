@@ -51,7 +51,7 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem, createPl
         />
         <Route 
         path="/update-system/:id"
-        render={props => <UpdateSystem {...props} updateSystem={updateSystem} />}
+        render={props => <UpdateSystem {...props} updateSystem={updateSystem} user={user} />}
         />
         <Route 
         exact
