@@ -27,10 +27,10 @@ class Systems extends React.Component {
     moonCounter = (starData) => {
         // adds moonCount attribute to each star object for total number of moons in system
         starData.forEach(star => {
-          let moonCount = 0;
-          star.Planets.forEach(planet => moonCount += planet.Moons.length);
-          star.moonCount = moonCount;
-        });
+          let moonCount = 0
+          star.Planets.forEach(planet => moonCount += planet.Moons.length)
+          star.moonCount = moonCount
+        })
     }
 
     render() {
