@@ -1,0 +1,8 @@
+.create-planet {
+    display: flex;
+    justify-content: space-around;
+}
+.planet-render {
+    border: 1px solid white;
+    border-radius: 50%;
+}

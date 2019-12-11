@@ -1,5 +1,6 @@
 import React from 'react'
 import PlanetForm from '../components/shared/PlanetForm'
+import '../styles/CreatePlanet.css'
 
 class CreatePlanet extends React.Component {
     constructor(props) {
@@ -7,7 +8,7 @@ class CreatePlanet extends React.Component {
         this.state = {
             name: '',
             color: '',
-            size: '',
+            size: 50,
             distance: '',
             year: '',
             composition: '',
@@ -23,11 +24,24 @@ class CreatePlanet extends React.Component {
     render() {
         const { name, color, size } = this.state
         return (
-            <div>
-                <PlanetForm 
-                formData={{name, color, size}}
-                onChange={this.handleChange}
-                />
+            <div className='create-planet'>
+                <div className='planet-form'>
+                    <PlanetForm 
+                    formData={{name, color, size}}
+                    onChange={this.handleChange}
+                    />
+                </div>
+                <div>
+                    <p>{name}</p>
+                    <div 
+                    className='planet-render' 
+                    style={{
+                        backgroundColor: color, 
+                        width: parseInt(size), 
+                        height: parseInt(size)
+                        }}>
+                    </div>
+                </div>
             </div>
         )
     }
