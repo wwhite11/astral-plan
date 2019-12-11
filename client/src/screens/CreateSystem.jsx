@@ -1,5 +1,7 @@
 import React from 'react'
 import PromptModal from '../components/shared/PromptModal'
+import '../styles/CreateSystem.css'
+import { createStar } from '../services'
 
 class CreateSystem extends React.Component {
     constructor(props){
@@ -7,37 +9,42 @@ class CreateSystem extends React.Component {
         
         this.state = {
             name: '',
-            size: '',
+            size: 150,
             color: '',
+            createdStar: null
         }
     }
-    toggleModal = () => {
-        this.setState({
-          isOpen: !this.state.isOpen
-        });
-      }
+
+    handleChange = e => {
+      this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    createStar(this.state)
+      .then(res =>
+        res.status === 201
+          ? this.setState({ createdStar: res.data.item })
+          : null
+      )
+      .catch(console.error)
+  }
     
       render() {
+        const { name, size, color } = this.state
         return (
-          <div className="App">
-            <button onClick={this.toggleModal}>
-              Create
-            </button>
-    
-            <PromptModal show={this.state.isOpen}
-              onClose={this.toggleModal}>
-               <form onSubmit={this.submitFormHandler}>
-          <div> What is the name of your Star?
-            <input type="text" name="name" ref="name" />
-          </div>
-          <div> What is the Size of your Star?
-            <input type="text" name="name" ref="name" />
-          </div>
-          <div> What is the color of your Star?
-            <input type="text" name="name" ref="name" />
-          </div>
-        </form>
-            </PromptModal>
+          <div>
+              <PromptModal 
+              formData={{name, size, color}}
+              onChange={this.handleChange} 
+              />
+              <div>
+                  <div className='star-render' 
+                  style={{width: parseInt(size), 
+                  height: parseInt(size), 
+                  backgroundColor: color}}></div>
+                  <p>{name}</p>
+              </div>
           </div>
     );
   }
