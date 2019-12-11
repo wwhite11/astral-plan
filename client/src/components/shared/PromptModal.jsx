@@ -35,8 +35,8 @@ class PromptModal extends React.Component {
         <div className="modal" style={{modalStyle}}>
           {this.props.children}
           <div className="footer">
-            <button onClick={this.props.onClose}>
-              Close
+          <button onClick={this.props.onClose}>
+              Submit
             </button>
           </div>
         </div>
