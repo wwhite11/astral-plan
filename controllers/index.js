@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const SALT_ROUNDS = 11;
 const TOKEN_KEY = '0fbfec5e1c6701506ab3f8a3162990ba';
 
+// user account calls
+
 const signup = async (req, res) => {
 	try {
 		const { username, firstName, lastName, email, password } = req.body
@@ -100,6 +102,8 @@ const updateUser = async (req, res) => {
     }
 }
 
+// get stars
+
 const getAllStars = async (req, res) => {
     try {
         const stars = await Star.findAll({
@@ -155,6 +159,74 @@ const getStar = async (req, res) => {
     }
 }
 
+// create celestial objects
+
+const createStar = async (req, res) => {
+	try {
+        const { name, size, color } = req.body
+        const userId = req.params.user_id
+		const star = await Star.create({
+			name,
+            size,
+            color,
+            userId
+		})
+		return res.status(201).json({ star })
+	} catch (error) {
+		console.log(
+			'You made it to the createStar controller, but there was an error :('
+		)
+		return res.status(400).json({ error: error.message })
+	}
+}
+
+const createPlanet = async (req, res) => {
+	try {
+        const { name, size, composition, baseColor, surface, rings, distance, year  } = req.body
+        const starId = req.params.star_id
+		const planet = await Planet.create({
+			name,
+            size,
+            composition,
+            baseColor,
+            surface,
+            rings,
+            distance,
+            year,
+            starId
+		})
+		return res.status(201).json({ planet })
+	} catch (error) {
+		console.log(
+			'You made it to the createPlanet controller, but there was an error :('
+		)
+		return res.status(400).json({ error: error.message })
+	}
+}
+
+const createMoon = async (req, res) => {
+	try {
+        const { name, size, baseColor, surface, distance  } = req.body
+        const planetId = req.params.planet_id
+		const moon = await Moon.create({
+			name,
+            size,
+            baseColor,
+            surface,
+            distance,
+            planetId
+		})
+		return res.status(201).json({ moon })
+	} catch (error) {
+		console.log(
+			'You made it to the createMoon controller, but there was an error :('
+		)
+		return res.status(400).json({ error: error.message })
+	}
+}
+
+// export
+
 module.exports = {
     TOKEN_KEY,
     signup,
@@ -162,5 +234,8 @@ module.exports = {
     updateUser,
     getUser,
     getStar,
-    getAllStars
+    getAllStars,
+    createStar,
+    createPlanet,
+    createMoon
 }
