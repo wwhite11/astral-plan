@@ -251,7 +251,7 @@ const updateStar = async (req, res) => {
     	// } else {
         //     console.log('No match!');
         // }
-        res.status(200).send('Nailed it!')
+        res.status(200).json({ star });
     } catch (error) {
         console.log(error)
         return res.status(500).json({ error: error.message })

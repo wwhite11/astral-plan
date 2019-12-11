@@ -1,11 +1,10 @@
 import React from 'react'
 import Systems from '../components/shared/Systems'
 
-const Stars = (props) => {
-    console.log(props);
+const Stars = () => {
     return (
         <div>
-            <Systems props={props} />
+            <Systems />
         </div>
     )
 }
