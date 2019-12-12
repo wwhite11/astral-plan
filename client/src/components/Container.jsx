@@ -26,6 +26,8 @@ class Container extends React.Component {
 
     setUser = user => this.setState({ user });
 
+    clearUser = () => this.setState({ user: null });
+
     render() {
         const { user } = this.state
         return (
@@ -35,6 +37,7 @@ class Container extends React.Component {
                 <Routes 
                 user={user}
                 setUser={this.setUser} 
+                clearUser={this.clearUser}
                 />
             </div>
         )
