@@ -12,6 +12,7 @@ import Star from '../screens/Star'
 import SignOut from '../components/shared/SignOut'
 import AuthenticatedRoute from './AuthenticatedRoute'
 import CreatePlanet from '../screens/CreatePlanet'
+import UpdatePlanet from '../screens/UpdatePlanet'
 
 const Routes = ({ user, setUser, clearUser, createSystem, updateSystem, createPlanet, updateUser }) => (
     <Switch>
@@ -60,6 +61,12 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem, createPl
         user={user}
         path='/stars/:star_id/create-planet'
         render={props => <CreatePlanet {...props} createPlanet={createPlanet} user={user} />}
+        />
+        <Route
+        exact
+        user={user}
+        path="/update-planet/:id"
+        render={props => <UpdatePlanet {...props} updateSystem={updateSystem} user={user} />}
         />
         <AuthenticatedRoute
         exact

@@ -102,7 +102,7 @@ const updateUser = async (req, res) => {
     }
 }
 
-// get stars
+// get stars, planets, moons
 
 const getStar = async (req, res) => {
     try {
@@ -129,6 +129,27 @@ const getStar = async (req, res) => {
             return res.status(200).json({ star });
         }
         return res.status(404).send('The star with the specified ID does not exist.');
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+const getPlanet = async (req, res) => {
+    try {
+        const { planet_id } = req.params;
+        const planet = await Planet.findOne({
+            where: {id: planet_id},
+            include: [
+                {
+                    model: Moon
+                }
+            ],
+            order: [ sequelize.col('Moons.distance') ]
+        });
+        if (planet) {
+            return res.status(200).json({ planet });
+        }
+        return res.status(404).send('The planet with the specified ID does not exist.');
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -378,6 +399,7 @@ module.exports = {
     updateUser,
     getUser,
     getStar,
+    getPlanet,
     getAllStars,
     getStarsByUser,
     createStar,

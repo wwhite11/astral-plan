@@ -1,5 +1,6 @@
 import React from 'react'
 import { getStarById } from '../services'
+import { Link } from 'react-router-dom'
 import sunTexture from '../images/sun-texture.jpeg'
 
 
@@ -46,6 +47,7 @@ class Star extends React.Component {
                                 <p>Surface: {planet.surface}</p>
                                 <p>Rings: {planet.rings}</p>
                                 <div className='planet' style={{backgroundColor: planet.baseColor}}></div>
+                                <Link to={`/update-planet/${planet.id}`}><button>Update planet</button></Link>
                                 <ul>
                                     {planet.Moons.map(moon => {
                                         return (
