@@ -104,6 +104,36 @@ const updateUser = async (req, res) => {
 
 // get stars
 
+const getStar = async (req, res) => {
+    try {
+        const { star_id } = req.params;
+        const star = await Star.findOne({
+            where: {id: star_id},
+            include: [
+                {
+                    model: User,
+                    attributes: [ 'username', 'firstName', 'lastName' ]
+                },
+                {
+                    model: Planet,
+                    include: [
+                        {
+                            model: Moon
+                        }
+                    ]
+                }
+            ],
+            order: [ sequelize.col('Planets.distance'), sequelize.col('Planets.Moons.distance') ]
+        });
+        if (star) {
+            return res.status(200).json({ star });
+        }
+        return res.status(404).send('The star with the specified ID does not exist.');
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 const getAllStars = async (req, res) => {
     try {
         const stars = await Star.findAll({
@@ -130,16 +160,13 @@ const getAllStars = async (req, res) => {
     }
 }
 
-const getStar = async (req, res) => {
+const getStarsByUser = async (req, res) => {
+    const { user_id } = req.params;
     try {
-        const { star_id } = req.params;
-        const star = await Star.findOne({
-            where: {id: star_id},
+        const stars = await Star.findAll({
+            order: [ sequelize.col('Planets.distance'), sequelize.col('Planets.Moons.distance') ],
+            where: { userId: user_id },
             include: [
-                {
-                    model: User,
-                    attributes: [ 'username', 'firstName', 'lastName' ]
-                },
                 {
                     model: Planet,
                     include: [
@@ -148,13 +175,9 @@ const getStar = async (req, res) => {
                         }
                     ]
                 }
-            ],
-            order: [ sequelize.col('Planets.distance'), sequelize.col('Planets.Moons.distance') ]
-        });
-        if (star) {
-            return res.status(200).json({ star });
-        }
-        return res.status(404).send('The star with the specified ID does not exist.');
+            ]
+        })
+        return res.status(200).json({ stars });
     } catch (error) {
         return res.status(500).send(error.message);
     }
@@ -285,6 +308,7 @@ module.exports = {
     getUser,
     getStar,
     getAllStars,
+    getStarsByUser,
     createStar,
     createPlanet,
     createMoon,
