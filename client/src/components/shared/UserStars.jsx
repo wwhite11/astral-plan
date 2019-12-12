@@ -1,6 +1,6 @@
 import React from 'react'
 import { getStarsByUser } from '../../services/index'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import sunTexture from '../../images/sun-texture.jpeg' 
 
 class UserStars extends React.Component {
@@ -33,6 +33,7 @@ class UserStars extends React.Component {
                         <img src={sunTexture} className='sun-texture' style={{width: parseInt(star.size), height: parseInt(star.size)}} alt='sun'/>
                     </div>
                     <NavLink to={`/stars/${star.id}/create-planet`}><button>+ ADD PLANET</button></NavLink>
+                    <Link to={`/update-system/${star.id}`}><button>:: UPDATE SYSTEM </button></Link>
                 </div>
             )
         })
