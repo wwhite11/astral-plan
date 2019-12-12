@@ -1,7 +1,7 @@
 import React from 'react'
 import Systems from '../components/shared/Systems'
 
-const Home = () => {
+const Home = (props) => {
     return (
         <div>
             <div className='home-header'>
@@ -9,7 +9,7 @@ const Home = () => {
                 <h4 className='sub-header'>Create your own fantasy Solar System!</h4>
             </div>
             <div className='home-star'></div>
-            <Systems />
+            <Systems user={props.user} />
         </div>
     )
 }
