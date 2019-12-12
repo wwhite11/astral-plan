@@ -30,7 +30,8 @@ class Container extends React.Component {
         const { user } = this.state
         return (
             <div>
-                <Nav />
+                <Nav
+                user={user} />
                 <Routes 
                 user={user}
                 setUser={this.setUser} 
