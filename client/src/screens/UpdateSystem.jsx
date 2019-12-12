@@ -33,10 +33,7 @@ class UpdateSystem extends React.Component {
     handleSubmit = event => {
         event.preventDefault()
         updateStar(this.props.user.id, this.props.match.params.id, this.state)
-        .then(res => res.status === 200 
-            ? this.setState({ createdStar: res.star })
-            : null
-        )
+        .then(this.props.history.push(`/stars/${this.props.match.params.id}`))
         .catch(console.error)
     }
 
