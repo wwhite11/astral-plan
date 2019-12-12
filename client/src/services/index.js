@@ -35,3 +35,12 @@ export const getStars = async () => {
       throw error
     }
   }
+
+  export const deleteStar = async (starId, userId) => {
+    try {
+      const resp = await api.delete(`/users/${userId}/stars/${starId}`)
+      return resp.data
+    } catch (error) {
+      throw error
+    }
+  }

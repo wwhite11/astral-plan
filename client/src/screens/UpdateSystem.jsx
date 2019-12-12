@@ -1,7 +1,8 @@
 import React from 'react'
 import PromptModal from '../components/shared/PromptModal'
+import Button from '../components/shared/Button'
 import '../styles/CreateSystem.css'
-import { updateStar, getStarById } from '../services'
+import { updateStar, getStarById, deleteStar } from '../services'
 
 class UpdateSystem extends React.Component {
     constructor(props){
@@ -38,6 +39,13 @@ class UpdateSystem extends React.Component {
         )
         .catch(console.error)
     }
+
+    handleDelete = event => {
+        event.preventDefault()
+        deleteStar(this.props.match.params.id, this.props.user.id)
+        .then(this.props.history.push('/'))
+        .catch(console.error)
+    }
     
     render() {
         const { name, size, color } = this.state
@@ -55,6 +63,7 @@ class UpdateSystem extends React.Component {
                   backgroundColor: color}}></div>
                   <p>{name}</p>
               </div>
+              <Button message="Delete this star" callback={this.handleDelete} />
           </div>
     );
   }

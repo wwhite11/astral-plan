@@ -24,6 +24,6 @@ router.post('/users/:user_id/:planet_id/moons', controllers.createMoon);
 router.put('/users/:user_id/stars/:star_id', restrict, controllers.updateStar);
 
 // Delete endpoints
-router.delete('/users/:user_id/stars/:star_id', controllers.deleteStar);
+router.delete('/users/:user_id/stars/:star_id', restrict, controllers.deleteStar);
 
 module.exports = router;
