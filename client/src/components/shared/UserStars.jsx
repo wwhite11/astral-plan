@@ -32,6 +32,13 @@ class UserStars extends React.Component {
                     <div className='star-render' style={{backgroundColor: star.color, width: parseInt(star.size), height: parseInt(star.size)}}>
                         <img src={sunTexture} className='sun-texture' style={{width: parseInt(star.size), height: parseInt(star.size)}} alt='sun'/>
                     </div>
+                    <div>
+                        {star.Planets.map(planet => {
+                            return (
+                                <div className='planet-render' style={{backgroundColor: planet.baseColor, width: parseInt(planet.size), height: parseInt(planet.size)}}></div>
+                            )
+                        })}
+                    </div>
                     <NavLink to={`/stars/${star.id}/create-planet`}><button>+ ADD PLANET</button></NavLink>
                     <Link to={`/update-system/${star.id}`}><button>:: UPDATE SYSTEM </button></Link>
                 </div>

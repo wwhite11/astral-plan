@@ -1,5 +1,6 @@
 import React from 'react'
 import { getStarById } from '../services'
+import sunTexture from '../images/sun-texture.jpeg'
 
 
 class Star extends React.Component {
@@ -29,7 +30,9 @@ class Star extends React.Component {
                 <h2>Star Name: {star.name}</h2>
                 <p>Color: {star.color}</p>
                 <p>Size: {star.size}</p>
-                <div className='star' style={{backgroundColor: star.color}}></div>
+                <div className='star' style={{backgroundColor: star.color, width: parseInt(star.size), height: parseInt(star.size)}}>
+                    <img src={sunTexture} className='sun-texture' style={{width: parseInt(star.size), height: parseInt(star.size)}}/>
+                </div>
                 <ul>
                     {star.Planets.map(planet => {
                         return (
