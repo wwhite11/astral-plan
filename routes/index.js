@@ -7,6 +7,7 @@ const router = Router();
 router.get('/', (req, res) => res.send('This is root!'));
 router.get('/stars', controllers.getAllStars);
 router.get('/stars/:star_id', controllers.getStar);
+router.get('/users/:user_id/stars', controllers.getStarsByUser);
 
 // User account endpoits
 router.get('/users/:user_id', controllers.getUser);
@@ -15,8 +16,14 @@ router.post('/signin', controllers.signin);
 router.put('/users/:user_id', restrict, controllers.updateUser);
 
 // Creation endpoints -- will add 'restrict' when front end is set
-router.post('/users/:user_id/stars', controllers.createStar);
-router.post('/users/:user_id/:star_id/planets', controllers.createPlanet);
+router.post('/users/:user_id/stars', restrict, controllers.createStar);
+router.post('/users/:user_id/:star_id/planets', restrict, controllers.createPlanet);
 router.post('/users/:user_id/:planet_id/moons', controllers.createMoon);
+
+// Update endpoints
+router.put('/users/:user_id/stars/:star_id', restrict, controllers.updateStar);
+
+// Delete endpoints
+router.delete('/users/:user_id/stars/:star_id', restrict, controllers.deleteStar);
 
 module.exports = router;

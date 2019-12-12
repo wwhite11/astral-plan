@@ -1,54 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-class PromptModal extends React.Component {
-  render() {
-    // Render nothing if the "show" prop is false
-    if(!this.props.show) {
-      return null;
-    }
-
-    // The gray background
-    const backdropStyle = {
-      position: 'fixed',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: 'rgba(0,0,0,0.3)',
-      padding: 50
-    };
-
-    // The modal "window"
-    const modalStyle = {
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      maxWidth: 500,
-      minHeight: 300,
-      margin: '0 auto',
-      padding: 30
-    };
-
-    return (
-        
-      <div className="backdrop" style={{backdropStyle}}>
-        <div className="modal" style={{modalStyle}}>
-          {this.props.children}
-          <div className="footer">
-            <button onClick={this.props.onClose}>
-              Close
-            </button>
-          </div>
-        </div>
+const PromptModal = (props) => {
+  const { name, size, color } = props.formData
+  const { onChange, onSubmit } = props
+  return (
+    <form className='star-form' onSubmit={onSubmit}>
+      <div> What is the name of your star?
+        <input type="text" name="name" value={name} onChange={(e) => onChange(e)}/>
       </div>
-    );
-  }
+      <div> What is the Size of your star?
+        <input type="range" min='100' max='200' name="size" value={size} onChange={(e) => onChange(e)}/>
+      </div>
+      <div> What is the color of your star?
+        <select type="text" name="color" value={color} onChange={(e) => onChange(e)}>
+          <option value='blue'>blue</option>
+          <option value='white'>white</option>
+          <option value='yellow'>yellow</option>
+          <option value='orange'>orange</option>
+          <option value='red'>red</option>
+        </select>
+      </div>
+      <div>
+        <input type='submit' value='submit' />
+      </div>
+    </form>
+  )
 }
-
-PromptModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  show: PropTypes.bool,
-  children: PropTypes.node
-};
 
 export default PromptModal;

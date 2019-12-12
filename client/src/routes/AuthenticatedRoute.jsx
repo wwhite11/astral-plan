@@ -8,6 +8,7 @@ const AuthenticatedRoute = ({
   render,
   ...rest
 }) => {
+  console.log(user)
   if (user && render) {
     return <Route {...rest} render={render} />
   } else {

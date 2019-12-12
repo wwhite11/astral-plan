@@ -18,7 +18,7 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem, createPl
         <Route
         exact
         path="/"
-        render={props => (user ? <Dashboard /> : <Home {...props} />)}
+        render={props => (user ? <Dashboard user={user} {...props} /> : <Home {...props} />)}
         />
         <Route
         path="/sign-up"
@@ -36,20 +36,24 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem, createPl
         <Route 
         exact
         path="/stars"
-        render={props => <Stars {...props} />}
+        render={props => <Stars {...props} user={user} />}
         />
         <Route 
         exact
         path="/stars/:id"
         render={props => <Star {...props} />}
         />
-        <Route 
+        <AuthenticatedRoute 
+        exact
+        user={user}
         path="/create-system"
-        render={props => <CreateSystem {...props} createSystem={createSystem} />}
+        render={props => <CreateSystem {...props} user={user} createSystem={createSystem} />}
         />
-        <Route 
+        <AuthenticatedRoute 
+        exact
+        user={user}
         path="/update-system/:id"
-        render={props => <UpdateSystem {...props} updateSystem={updateSystem} />}
+        render={props => <UpdateSystem {...props} updateSystem={updateSystem} user={user} />}
         />
         <Route 
         exact

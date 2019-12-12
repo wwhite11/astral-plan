@@ -104,32 +104,6 @@ const updateUser = async (req, res) => {
 
 // get stars
 
-const getAllStars = async (req, res) => {
-    try {
-        const stars = await Star.findAll({
-            order: [ sequelize.fn( 'RANDOM' ) ],
-            limit: 2, // increase once db seed is larger
-            include: [
-                {
-                    model: User,
-                    attributes: [ 'username', 'firstName', 'lastName' ]
-                },
-                {
-                    model: Planet,
-                    include: [
-                        {
-                            model: Moon
-                        }
-                    ]
-                }
-            ]
-        });
-        return res.status(200).json({ stars });
-    } catch (error) {
-        return res.status(500).send(error.message);
-    }
-}
-
 const getStar = async (req, res) => {
     try {
         const { star_id } = req.params;
@@ -160,19 +134,73 @@ const getStar = async (req, res) => {
     }
 }
 
+const getAllStars = async (req, res) => {
+    try {
+        const stars = await Star.findAll({
+            order: [ sequelize.fn( 'RANDOM' ) ],
+            limit: 2, // increase once db seed is larger
+            include: [
+                {
+                    model: User,
+                    attributes: [ 'username', 'firstName', 'lastName' ]
+                },
+                {
+                    model: Planet,
+                    include: [
+                        {
+                            model: Moon
+                        }
+                    ]
+                }
+            ]
+        });
+        return res.status(200).json({ stars });
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
+const getStarsByUser = async (req, res) => {
+    const { user_id } = req.params;
+    try {
+        const stars = await Star.findAll({
+            order: [ sequelize.col('Planets.distance'), sequelize.col('Planets.Moons.distance') ],
+            where: { userId: user_id },
+            include: [
+                {
+                    model: Planet,
+                    include: [
+                        {
+                            model: Moon
+                        }
+                    ]
+                }
+            ]
+        })
+        return res.status(200).json({ stars });
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 // create celestial objects
 
 const createStar = async (req, res) => {
 	try {
         const { name, size, color } = req.body
-        const userId = req.params.user_id
-		const star = await Star.create({
-			name,
-            size,
-            color,
-            userId
-		})
-		return res.status(201).json({ star })
+        const { id } = res.locals.user; // from restrict
+        const userId = req.params.user_id // from routes
+        if (id === Number(userId)) {
+            const star = await Star.create({
+                name,
+                size,
+                color,
+                userId
+            }) 
+    		return res.status(201).json({ star })
+        } else {
+            console.log('No user match!');
+        }
 	} catch (error) {
 		console.log(
 			'You made it to the createStar controller, but there was an error :('
@@ -184,19 +212,25 @@ const createStar = async (req, res) => {
 const createPlanet = async (req, res) => {
 	try {
         const { name, size, composition, baseColor, surface, rings, distance, year  } = req.body
+        const { id } = res.locals.user; // from restrict
+        const userId = req.params.user_id // from routes
         const starId = req.params.star_id
-		const planet = await Planet.create({
-			name,
-            size,
-            composition,
-            baseColor,
-            surface,
-            rings,
-            distance,
-            year,
-            starId
-		})
-		return res.status(201).json({ planet })
+        if (id === Number(userId)) {
+            const planet = await Planet.create({
+                name,
+                size,
+                composition,
+                baseColor,
+                surface,
+                rings,
+                distance,
+                year,
+                starId
+            })
+            return res.status(201).json({ planet })
+        } else {
+            console.log('No user match!')
+        }
 	} catch (error) {
 		console.log(
 			'You made it to the createPlanet controller, but there was an error :('
@@ -226,6 +260,49 @@ const createMoon = async (req, res) => {
 	}
 }
 
+// update celestial objects
+const updateStar = async (req, res) => {
+    try {
+        const { id } = res.locals.user; // from restrict
+        const { name, size, color } = req.body;
+        const userId = req.params.user_id; // from routes
+        const { star_id } = req.params // from routes
+        if (id === Number(userId)) {
+            const star = await Star.findByPk(star_id);
+            await star.update({ name, size, color })
+            res.status(200).json({ star });
+        } else {
+            console.log('No match!');
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: error.message })
+    }
+}
+
+// delete celestial objects
+const deleteStar = async (req, res) => {
+
+    console.log(req.params)
+    try {
+        const tokenId = res.locals.user.id; // from restrict
+        const userId = req.params.user_id; // from routes
+        const id = req.params.star_id;
+        if (tokenId === Number(userId)) {
+            const star = await Star.findByPk(id);
+            if (star.dataValues.userId === tokenId) {
+                const deleted = await star.destroy()
+        	    if (deleted) {
+			        return res.status(202).send('Item deleted')
+                }
+            }
+        }
+		throw new Error('Item not found')
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
 // export
 
 module.exports = {
@@ -236,7 +313,10 @@ module.exports = {
     getUser,
     getStar,
     getAllStars,
+    getStarsByUser,
     createStar,
     createPlanet,
-    createMoon
+    createMoon,
+    updateStar,
+    deleteStar
 }
