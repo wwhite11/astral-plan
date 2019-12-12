@@ -9,7 +9,7 @@ const PromptModal = (props) => {
         <input type="text" name="name" value={name} onChange={(e) => onChange(e)}/>
       </div>
       <div> What is the Size of your star?
-        <input type="range" min='100' max='200' name="size" value={size} onChange={(e) => onChange(e)}/>
+        <input type="range" min='100' max='300' name="size" value={size} onChange={(e) => onChange(e)}/>
       </div>
       <div> What is the color of your star?
         <select type="text" name="color" value={color} onChange={(e) => onChange(e)}>
