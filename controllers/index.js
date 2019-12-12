@@ -280,6 +280,29 @@ const updateStar = async (req, res) => {
     }
 }
 
+// delete celestial objects
+const deleteStar = async (req, res) => {
+
+    console.log(req.params)
+    try {
+        const tokenId = res.locals.user.id; // from restrict
+        const userId = req.params.user_id; // from routes
+        const id = req.params.star_id;
+        if (tokenId === Number(userId)) {
+            const star = await Star.findByPk(id);
+            if (star.dataValues.userId === tokenId) {
+                const deleted = await star.destroy()
+        	    if (deleted) {
+			        return res.status(202).send('Item deleted')
+                }
+            }
+        }
+		throw new Error('Item not found')
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
 // export
 
 module.exports = {
@@ -294,5 +317,6 @@ module.exports = {
     createStar,
     createPlanet,
     createMoon,
-    updateStar
+    updateStar,
+    deleteStar
 }
