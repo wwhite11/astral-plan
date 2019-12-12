@@ -2,6 +2,7 @@ import React from 'react'
 import PromptModal from '../components/shared/PromptModal'
 import '../styles/CreateSystem.css'
 import { createStar } from '../services'
+import sunTexture from '../images/sun-texture.jpeg'
 
 class CreateSystem extends React.Component {
     constructor(props){
@@ -43,7 +44,9 @@ class CreateSystem extends React.Component {
                   <div className='star-render' 
                   style={{width: parseInt(size), 
                   height: parseInt(size), 
-                  backgroundColor: color}}></div>
+                  backgroundColor: color}}>
+                    <img src={sunTexture} className='sun-texture' style={{height: parseInt(size), width: parseInt(size)}}/>
+                  </div>
                   <p>{name}</p>
               </div>
           </div>
