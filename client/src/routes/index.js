@@ -55,7 +55,7 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem, createPl
         path="/update-system/:id"
         render={props => <UpdateSystem {...props} updateSystem={updateSystem} user={user} />}
         />
-        <Route 
+        <AuthenticatedRoute 
         exact
         user={user}
         path='/stars/:star_id/create-planet'
