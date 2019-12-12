@@ -240,18 +240,17 @@ const createMoon = async (req, res) => {
 // update celestial objects
 const updateStar = async (req, res) => {
     try {
-        // const { id } = res.locals.user; // from restrict
-        const { name, size, color } = req.body
+        const { id } = res.locals.user; // from restrict
+        const { name, size, color } = req.body;
         const userId = req.params.user_id; // from routes
-        const id = req.params.star_id // from routes
-//        if (id === Number(userId)) {
-            const star = await Star.findByPk(id);
+        const { star_id } = req.params // from routes
+        if (id === Number(userId)) {
+            const star = await Star.findByPk(star_id);
             await star.update({ name, size, color })
-        //     }
-    	// } else {
-        //     console.log('No match!');
-        // }
-        res.status(200).json({ star });
+            res.status(200).json({ star });
+        } else {
+            console.log('No match!');
+        }
     } catch (error) {
         console.log(error)
         return res.status(500).json({ error: error.message })

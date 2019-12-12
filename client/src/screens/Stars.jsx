@@ -1,10 +1,10 @@
 import React from 'react'
 import Systems from '../components/shared/Systems'
 
-const Stars = () => {
+const Stars = ({ user }) => {
     return (
         <div>
-            <Systems />
+            <Systems user={user} />
         </div>
     )
 }
