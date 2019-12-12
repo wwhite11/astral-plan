@@ -188,9 +188,9 @@ const getStarsByUser = async (req, res) => {
 const createStar = async (req, res) => {
 	try {
         const { name, size, color } = req.body
-        const { id } = res.locals.user; // from restrict
+        // const { id } = res.locals.user; // from restrict
         const userId = req.params.user_id // from routes
-        if (id === Number(userId)) {
+        // if (id === Number(userId)) {
             const star = await Star.create({
                 name,
                 size,
@@ -198,9 +198,9 @@ const createStar = async (req, res) => {
                 userId
             }) 
     		return res.status(201).json({ star })
-        } else {
-            console.log('No user match!');
-        }
+        // } else {
+        //     console.log('No user match!');
+        // }
 	} catch (error) {
 		console.log(
 			'You made it to the createStar controller, but there was an error :('
@@ -212,10 +212,10 @@ const createStar = async (req, res) => {
 const createPlanet = async (req, res) => {
 	try {
         const { name, size, composition, baseColor, surface, rings, distance, year  } = req.body
-        const { id } = res.locals.user; // from restrict
-        const userId = req.params.user_id // from routes
+        // const { id } = res.locals.user; // from restrict
+        // const userId = req.params.user_id // from routes
         const starId = req.params.star_id
-        if (id === Number(userId)) {
+        // if (id === Number(userId)) {
             const planet = await Planet.create({
                 name,
                 size,
@@ -228,9 +228,9 @@ const createPlanet = async (req, res) => {
                 starId
             })
             return res.status(201).json({ planet })
-        } else {
-            console.log('No user match!')
-        }
+        // } else {
+        //     console.log('No user match!')
+        // }
 	} catch (error) {
 		console.log(
 			'You made it to the createPlanet controller, but there was an error :('

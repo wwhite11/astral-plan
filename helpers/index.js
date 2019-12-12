@@ -4,11 +4,11 @@ module.exports = (req, res, next) => {
 	const jwt = require('jsonwebtoken')
 	try {
 		const token = req.headers.authorization.split(' ')[1]
-		console.log(token)
+//		console.log(token)
 		const data = jwt.verify(token, TOKEN_KEY)
-		console.log(data)
-		res.locals.user = data // Used for assigning an item to a user, we won't be using this for this excercise
-		console.log('res.locals.user:', res.locals.user)
+//		console.log(data)
+//		res.locals.user = data // Used for assigning an item to a user, we won't be using this for this excercise
+//		console.log('res.locals.user:', res.locals.user)
 		next()
 	} catch (error) {
 		console.log(error)
