@@ -18,7 +18,7 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem, createPl
         <Route
         exact
         path="/"
-        render={props => (user ? <Dashboard /> : <Home {...props} />)}
+        render={props => (user ? <Dashboard user={user} {...props} /> : <Home {...props} />)}
         />
         <Route
         path="/sign-up"
