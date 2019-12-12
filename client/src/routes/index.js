@@ -57,8 +57,9 @@ const Routes = ({ user, setUser, clearUser, createSystem, updateSystem, createPl
         />
         <Route 
         exact
-        path='/create-planet'
-        render={props => <CreatePlanet {...props} createPlanet={createPlanet} />}
+        user={user}
+        path='/stars/:star_id/create-planet'
+        render={props => <CreatePlanet {...props} createPlanet={createPlanet} user={user} />}
         />
         <AuthenticatedRoute
         exact

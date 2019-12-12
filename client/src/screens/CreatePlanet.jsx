@@ -1,19 +1,20 @@
 import React from 'react'
 import PlanetForm from '../components/shared/PlanetForm'
 import '../styles/CreatePlanet.css'
+import { createPlanet } from '../services'
 
 class CreatePlanet extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             name: '',
-            color: '',
+            baseColor: 'red',
             size: 50,
-            distance: '',
-            year: '',
-            composition: '',
-            surface: '',
-            rings: ''
+            distance: 50,
+            year: 50,
+            composition: 'solid',
+            surface: 'craters',
+            rings: 'none'
         }
     }
 
@@ -21,14 +22,26 @@ class CreatePlanet extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+    handleSubmit = event => {
+        event.preventDefault()
+        createPlanet(this.props.user.id, this.props.match.params.star_id, this.state)
+        //   .then(res =>
+        //     res.status === 201
+        //       ? this.setState({ createdStar: res.data.star })
+        //       : null
+        //   )
+          .catch(console.error)
+      }
+
     render() {
-        const { name, color, size } = this.state
+        const { name, composition, size, baseColor, surface, rings, distance, year } = this.state
         return (
             <div className='create-planet'>
                 <div className='planet-form'>
                     <PlanetForm 
-                    formData={{name, color, size}}
+                    formData={{name, composition, size, baseColor, surface, rings, distance, year}}
                     onChange={this.handleChange}
+                    onSubmit={this.handleSubmit}
                     />
                 </div>
                 <div>
@@ -36,7 +49,7 @@ class CreatePlanet extends React.Component {
                     <div 
                     className='planet-render' 
                     style={{
-                        backgroundColor: color, 
+                        backgroundColor: baseColor, 
                         width: parseInt(size), 
                         height: parseInt(size)
                         }}>
