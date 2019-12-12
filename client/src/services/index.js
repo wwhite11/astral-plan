@@ -23,7 +23,7 @@ export const getStars = async () => {
   export const getStarsByUser = async (userId) => {
     try {
       const resp = await api.get(`/users/${userId}/stars`)
-      return resp.data
+      return resp.data.stars
     } catch (error) {
       throw error
     }
