@@ -257,6 +257,24 @@ const updateStar = async (req, res) => {
     }
 }
 
+// delete celestial objects
+const deleteStar = async (req, res) => {
+
+    console.log(req.params)
+    try {
+		const id = req.params.star_id;
+		const deleted = await Star.destroy({
+			where: { id: id }
+		})
+		if (deleted) {
+			return res.status(202).send('Item deleted')
+		}
+		throw new Error('Item not found')
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
 // export
 
 module.exports = {
@@ -270,5 +288,6 @@ module.exports = {
     createStar,
     createPlanet,
     createMoon,
-    updateStar
+    updateStar,
+    deleteStar
 }
