@@ -1,6 +1,7 @@
 import React from 'react'
 import { getStars } from '../../services'
 import { Link } from 'react-router-dom'
+import sunTexture from '../../images/sun-texture.jpeg'
 
 class Systems extends React.Component {
     constructor(props) {
@@ -39,7 +40,9 @@ class Systems extends React.Component {
             return (
                 <div className='system' key={star.id}>
                     <div className='star-planets'>
-                    <div className="star" style={{backgroundColor: star.color}}></div>
+                    <div className="star" style={{backgroundColor: star.color, height: parseInt(star.size), width: parseInt(star.size)}}>
+                        <img src={sunTexture} className='sun-texture' style={{height: parseInt(star.size), width: parseInt(star.size)}}/>
+                    </div>
                     <div className='planets'>
                         {star.Planets.map(planet => {
                             return (
