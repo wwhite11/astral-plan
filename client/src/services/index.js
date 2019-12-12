@@ -1,5 +1,7 @@
 import api from './apiConfig'
 
+// general read functions 
+
 export const getStars = async () => {
     try {
       const resp = await api.get('/stars')
@@ -18,9 +20,20 @@ export const getStars = async () => {
     }
   }
 
-  export const createStar = async (user, star) => {
+  export const getStarsByUser = async (userId) => {
     try {
-      const resp = await api.post(`/users/${user}/stars`, star)
+      const resp = await api.get(`/users/${userId}/stars`)
+      return resp.data
+    } catch (error) {
+      throw error
+    }
+  }
+
+  // star operations
+
+  export const createStar = async (user, starData) => {
+    try {
+      const resp = await api.post(`/users/${user}/stars`, starData)
       return resp
     } catch (error) {
       throw error
@@ -45,10 +58,12 @@ export const getStars = async () => {
     }
   }
 
-  export const getStarsByUser = async (userId) => {
+  // planet operations 
+  
+  export const createPlanet = async (user, star, planetData) => {
     try {
-      const resp = await api.get(`/users/${userId}/stars`)
-      return resp.data
+      const resp = await api.post(`/users/${user}/${star}/planets`, planetData)
+      return resp
     } catch (error) {
       throw error
     }
