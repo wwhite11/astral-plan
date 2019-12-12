@@ -44,3 +44,12 @@ export const getStars = async () => {
       throw error
     }
   }
+
+  export const getStarsByUser = async (userId) => {
+    try {
+      const resp = await api.get(`/users/${userId}/stars`)
+      return resp.data
+    } catch (error) {
+      throw error
+    }
+  }
