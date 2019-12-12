@@ -11,15 +11,6 @@ export const getStars = async () => {
     }
   }
 
-  export const getStarById = async id => {
-    try {
-      const resp = await api.get(`/stars/${id}`)
-      return resp.data.star
-    } catch (error) {
-      throw error
-    }
-  }
-
   export const getStarsByUser = async (userId) => {
     try {
       const resp = await api.get(`/users/${userId}/stars`)
@@ -30,6 +21,15 @@ export const getStars = async () => {
   }
 
   // star operations
+
+  export const getStarById = async id => {
+    try {
+      const resp = await api.get(`/stars/${id}`)
+      return resp.data.star
+    } catch (error) {
+      throw error
+    }
+  }
 
   export const createStar = async (user, starData) => {
     try {
@@ -59,6 +59,15 @@ export const getStars = async () => {
   }
 
   // planet operations 
+
+  export const getPlanetById = async id => {
+    try {
+      const resp = await api.get(`/planets/${id}`)
+      return resp.data.planet
+    } catch (error) {
+      throw error
+    }
+  }
   
   export const createPlanet = async (user, star, planetData) => {
     try {
@@ -72,6 +81,15 @@ export const getStars = async () => {
   export const updatePlanet = async (userId, planetId, data) => {
     try {
       const resp = await api.put(`/users/${userId}/planets/${planetId}`, data);
+      return resp.data
+    } catch (error) {
+      throw error
+    }
+  }
+
+  export const deletePlanet = async (planetId, userId) => {
+    try {
+      const resp = await api.delete(`/users/${userId}/planets/${planetId}`)
       return resp.data
     } catch (error) {
       throw error
