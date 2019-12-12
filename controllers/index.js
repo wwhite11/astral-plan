@@ -138,7 +138,7 @@ const getAllStars = async (req, res) => {
     try {
         const stars = await Star.findAll({
             order: [ sequelize.fn( 'RANDOM' ) ],
-            limit: 2, // increase once db seed is larger
+            limit: 20, // increase once db seed is larger
             include: [
                 {
                     model: User,
