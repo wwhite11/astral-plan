@@ -1,6 +1,7 @@
 import React from 'react'
 import { getStarsByUser } from '../../services/index'
 import { NavLink } from 'react-router-dom'
+import sunTexture from '../../images/sun-texture.jpeg' 
 
 class UserStars extends React.Component {
     constructor(props) {
@@ -28,7 +29,9 @@ class UserStars extends React.Component {
             return (
                 <div>
                     <p>Star Name: {star.name}</p>
-                    <div className='star-render' style={{backgroundColor: star.color, width: parseInt(star.size), height: parseInt(star.size)}}></div>
+                    <div className='star-render' style={{backgroundColor: star.color, width: parseInt(star.size), height: parseInt(star.size)}}>
+                        <img src={sunTexture} className='sun-texture' style={{width: parseInt(star.size), height: parseInt(star.size)}} alt='sun'/>
+                    </div>
                     <NavLink to={`/stars/${star.id}/create-planet`}><button>+ ADD PLANET</button></NavLink>
                 </div>
             )
