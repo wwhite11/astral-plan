@@ -14,6 +14,6 @@ const Nav = (props) => {
 			<NavLink className='navbar' user={props.user} to={props.user ? '/sign-out' : '/sign-up'}>{props.user ? signOut : signUp}</NavLink>
 		</nav>
 	)
-	}
+}
 
 export default Nav
