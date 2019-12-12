@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import './signInStyle/signIn.css';
 
 import { signInUser } from '../../services/auth'
 
@@ -51,7 +52,9 @@ class SignIn extends Component {
                 </button>
             )
         } else {
-            return <button type="submit">Sign In</button>
+            return <div className="signinButton">
+                <button type="submit">Sign In</button>
+            </div>
         }
     }
 

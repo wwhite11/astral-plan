@@ -18,10 +18,10 @@ class Container extends React.Component {
     checkToken() {
         const jwt = require('jsonwebtoken');
         const JwtToken = localStorage.getItem('token') || null;
-        const data = jwt.verify(JwtToken, TOKEN_KEY);
-        this.setState(state => ({
-            user: data
-        }))
+        // const data = jwt.verify(JwtToken, TOKEN_KEY);
+        // this.setState(state => ({
+        //     user: data
+        // }))
     }
 
     setUser = user => this.setState({ user });

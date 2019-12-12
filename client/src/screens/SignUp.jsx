@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { signUp, signInUser } from '../services/auth'
+import "../../src/components/shared/signInStyle/signUp.css"
 
 class SignUp extends Component {
   constructor() {
@@ -54,7 +55,7 @@ class SignUp extends Component {
         </button>
       )
     } else {
-      return <button type="submit">Sign Up</button>
+      return <div className="signUpButton"><button type="submit">Sign Up</button></div>
     }
   }
 
