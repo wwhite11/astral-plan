@@ -29,7 +29,7 @@ class UserStars extends React.Component {
                 <div>
                     <p>Star Name: {star.name}</p>
                     <div className='star-render' style={{backgroundColor: star.color, width: parseInt(star.size), height: parseInt(star.size)}}></div>
-                    <NavLink to='/create-planet'><button>+ ADD PLANET</button></NavLink>
+                    <NavLink to={`/stars/${star.id}/create-planet`}><button>+ ADD PLANET</button></NavLink>
                 </div>
             )
         })

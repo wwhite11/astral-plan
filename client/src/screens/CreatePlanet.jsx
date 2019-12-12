@@ -25,11 +25,11 @@ class CreatePlanet extends React.Component {
     handleSubmit = event => {
         event.preventDefault()
         createPlanet(this.props.user.id, this.props.match.params.star_id, this.state)
-        //   .then(res =>
-        //     res.status === 201
-        //       ? this.setState({ createdStar: res.data.star })
-        //       : null
-        //   )
+          .then(res =>
+            res.status === 201
+              ? this.props.history.push(`/stars/${this.props.match.params.star_id}`)
+              : null
+          )
           .catch(console.error)
       }
 
