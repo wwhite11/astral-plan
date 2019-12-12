@@ -85,3 +85,12 @@ nav {
   color: #E3DE63;
   letter-spacing: 4px;
 }
+.username-create {
+  display: flex;
+  justify-content: space-around;
+  width: 100vh;
+  align-items: center;
+}
+.dash-header {
+  text-align: center;
+}
