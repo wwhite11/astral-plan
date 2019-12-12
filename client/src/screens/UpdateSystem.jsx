@@ -3,6 +3,7 @@ import PromptModal from '../components/shared/PromptModal'
 import Button from '../components/shared/Button'
 import '../styles/CreateSystem.css'
 import { updateStar, getStarById, deleteStar } from '../services'
+import sunTexture from '../images/sun-texture.jpeg'
 
 class UpdateSystem extends React.Component {
     constructor(props){
@@ -51,18 +52,20 @@ class UpdateSystem extends React.Component {
         const { name, size, color } = this.state
         return (
           <div>
+              <div>
+                  <div className='star-render' 
+                  style={{width: parseInt(size), 
+                  height: parseInt(size), 
+                  backgroundColor: color}}>
+                      <img src={sunTexture} className='sun-texture' style={{width: parseInt(size), height: parseInt(size)}}/>
+                  </div>
+                  <p>{name}</p>
+              </div>
               <PromptModal 
               formData={{name, size, color}}
               onChange={this.handleChange}
               onSubmit={this.handleSubmit} 
               />
-              <div>
-                  <div className='star-render' 
-                  style={{width: parseInt(size), 
-                  height: parseInt(size), 
-                  backgroundColor: color}}></div>
-                  <p>{name}</p>
-              </div>
               <Button message="Delete this star" callback={this.handleDelete} />
           </div>
     );
