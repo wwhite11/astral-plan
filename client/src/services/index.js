@@ -68,3 +68,32 @@ export const getStars = async () => {
       throw error
     }
   }
+
+  export const updatePlanet = async (userId, planetId, data) => {
+    try {
+      const resp = await api.put(`/users/${userId}/planets/${planetId}`, data);
+      return resp.data
+    } catch (error) {
+      throw error
+    }
+  }
+
+    // moon operations 
+  
+    export const createMoon = async (user, star, moonData) => {
+      try {
+        const resp = await api.post(`/users/${user}/${star}/moons`, moonData)
+        return resp
+      } catch (error) {
+        throw error
+      }
+    }
+  
+    export const updateMoon = async (userId, moonId, data) => {
+      try {
+        const resp = await api.put(`/users/${userId}/moons/${moonId}`, data);
+        return resp.data
+      } catch (error) {
+        throw error
+      }
+    }
