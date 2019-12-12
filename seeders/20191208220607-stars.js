@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Stars', [
       {
         name: 'Sol',
-        size: 1090,
+        size: 290,
         color: 'yellow',
         userId: 1,
         createdAt: new Date(),
@@ -13,7 +13,7 @@ module.exports = {
       },
       {
         name: 'Utu',
-        size: 1090,
+        size: 290,
         color: 'yellow',
         userId: 2,
         createdAt: new Date(),

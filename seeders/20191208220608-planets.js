@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Planets', [
       {
         name: 'Zeus',
-        size: 110,
+        size: 90,
         composition: 'gas',
         baseColor: 'red',
         surface: 'cloud',
@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         name: 'Cronus',
-        size: 90,
+        size: 50,
         composition: 'gas',
         baseColor: 'yellow',
         surface: 'cloud',
@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         name: 'Kittu',
-        size: 110,
+        size: 90,
         composition: 'gas',
         baseColor: 'red',
         surface: 'cloud',
@@ -44,7 +44,7 @@ module.exports = {
       },
       {
         name: 'Misharu',
-        size: 90,
+        size: 50,
         composition: 'gas',
         baseColor: 'yellow',
         surface: 'cloud',
