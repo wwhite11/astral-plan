@@ -27,5 +27,7 @@ router.put('/users/:user_id/moons/:moon_id', controllers.updateMoon);
 
 // Delete endpoints
 router.delete('/users/:user_id/stars/:star_id', restrict, controllers.deleteStar);
+router.delete('/users/:user_id/planets/:planet_id', controllers.deletePlanet);
+router.delete('/users/:user_id/moons/:moon_id', controllers.deleteMoon);
 
 module.exports = router;

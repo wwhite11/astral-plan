@@ -339,6 +339,36 @@ const deleteStar = async (req, res) => {
 	}
 }
 
+const deletePlanet = async (req, res) => {
+    try {
+        const userId = req.params.user_id; // from routes
+        const id = req.params.planet_id;
+        const planet = await Planet.findByPk(id);
+        const deleted = await planet.destroy()
+        if (deleted) {
+			return res.status(202).send('Item deleted')
+        }
+		throw new Error('Item not found')
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
+const deleteMoon = async (req, res) => {
+    try {
+        const userId = req.params.user_id; // from routes
+        const id = req.params.moon_id;
+        const moon = await Moon.findByPk(id);
+        const deleted = await moon.destroy()
+        if (deleted) {
+			return res.status(202).send('Item deleted')
+        }
+		throw new Error('Item not found')
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
 // export
 
 module.exports = {
@@ -356,5 +386,7 @@ module.exports = {
     updateStar,
     updatePlanet,
     updateMoon,
-    deleteStar
+    deleteStar,
+    deletePlanet,
+    deleteMoon
 }
