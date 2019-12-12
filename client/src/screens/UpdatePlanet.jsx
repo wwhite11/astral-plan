@@ -3,7 +3,7 @@ import PlanetForm from '../components/shared/PlanetForm'
 import Button from '../components/shared/Button'
 import '../styles/CreateSystem.css'
 import { updatePlanet, getPlanetById, deletePlanet } from '../services'
-import sunTexture from '../images/sun-texture.jpeg'
+import iceTexture from '../images/ice-texture.png'
 
 class UpdatePlanet extends React.Component {
     constructor(props){
@@ -57,10 +57,10 @@ class UpdatePlanet extends React.Component {
           <div>
               <div>
                   <div className='star-render' 
-                  style={{width: parseInt(size), 
-                  height: parseInt(size), 
+                  style={{width: parseInt(size)*2, 
+                  height: parseInt(size)*2, 
                   backgroundColor: baseColor}}>
-                      <img src={sunTexture} className='sun-texture' style={{width: parseInt(size), height: parseInt(size)}}/>
+                      <img src={iceTexture} className='sun-texture' style={{width: parseInt(size)*2, height: parseInt(size)*2}}/>
                   </div>
                   <p>{name}</p>
               </div>
