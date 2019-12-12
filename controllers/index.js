@@ -280,6 +280,42 @@ const updateStar = async (req, res) => {
     }
 }
 
+const updatePlanet = async (req, res) => {
+    try {
+        const { name, size, composition, baseColor, surface, rings, distance, year } = req.body;
+        const userId = req.params.user_id; // from routes
+        const { planet_id } = req.params // from routes
+        // if (id === Number(userId)) {
+            const planet = await Planet.findByPk(planet_id);
+            await planet.update({ name, size, composition, baseColor, surface, rings, distance, year })
+            res.status(200).json({ planet });
+        // } else {
+        //     console.log('No match!');
+        // }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: error.message })
+    }
+}
+
+const updateMoon = async (req, res) => {
+    try {
+        const { name, size, baseColor, surface, distance } = req.body;
+        const userId = req.params.user_id; // from routes
+        const { moon_id } = req.params // from routes
+        // if (id === Number(userId)) {
+            const moon = await Moon.findByPk(moon_id);
+            await moon.update({ name, size, baseColor, surface, distance })
+            res.status(200).json({ moon });
+        // } else {
+        //     console.log('No match!');
+        // }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 // delete celestial objects
 const deleteStar = async (req, res) => {
 
@@ -303,6 +339,36 @@ const deleteStar = async (req, res) => {
 	}
 }
 
+const deletePlanet = async (req, res) => {
+    try {
+        const userId = req.params.user_id; // from routes
+        const id = req.params.planet_id;
+        const planet = await Planet.findByPk(id);
+        const deleted = await planet.destroy()
+        if (deleted) {
+			return res.status(202).send('Item deleted')
+        }
+		throw new Error('Item not found')
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
+const deleteMoon = async (req, res) => {
+    try {
+        const userId = req.params.user_id; // from routes
+        const id = req.params.moon_id;
+        const moon = await Moon.findByPk(id);
+        const deleted = await moon.destroy()
+        if (deleted) {
+			return res.status(202).send('Item deleted')
+        }
+		throw new Error('Item not found')
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
 // export
 
 module.exports = {
@@ -318,5 +384,9 @@ module.exports = {
     createPlanet,
     createMoon,
     updateStar,
-    deleteStar
+    updatePlanet,
+    updateMoon,
+    deleteStar,
+    deletePlanet,
+    deleteMoon
 }
